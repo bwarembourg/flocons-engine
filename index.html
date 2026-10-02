@@ -1,0 +1,32 @@
+<html>
+    <canvas id="flocons"width="800" height="800"></canvas>
+</html>
+<script src="engine/common.js"></script>
+<script src="engine/renderer.js"></script>
+<script src="engine/animation/animation.js"></script>
+<script src="engine/sprite/sprite.js"></script>
+<script>
+    anims = new Anim('idle', ['engine/sprite/default.png', 'engine/sprite/default2.png'], 10);
+    s = new Sprite(0, 0, 'engine/sprite/default2.png', [anims]);
+    setTimeout(() => {
+        s.destroy();
+    }, 1000);
+</script>
+<!-- 
+    TODO LIST
+    - control key
+    - control mouse
+    - move
+    - lerp
+    - collision
+    - layers
+    - level map
+    - text (minecraftia)
+    - dialogs
+    - save manager
+    - title
+    - game over
+    - pause
+    - music
+    - sfx 
+-->
