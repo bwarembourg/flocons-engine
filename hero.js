@@ -1,10 +1,7 @@
 class Hero {
-    constructor() {
+    constructor() {}
 
-    }
-
-    update() {
-    }
+    update() {}
 
     onkeydown(keys) {
         if (isKeyUp(keys)) {
@@ -23,4 +20,5 @@ class Hero {
             this.sprite.destroy();
         }
     }
+
 }
