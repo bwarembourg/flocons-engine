@@ -31,7 +31,7 @@ class Sprite {
         if (this.moving) {
             this.x += this.percentMoving * (this.dest.x - this.initialPos.x);
             this.y += this.percentMoving * (this.dest.y - this.initialPos.y);
-            if (getDistance(this.getCenterPos(), this.dest) < 5) {
+            if (getDistance(this.getCenterPos(), this.dest) <= 500 / this.speed) {
                 this.moving = false;
                 this.x = this.dest.x - this.img.width / 2;
                 this.y = this.dest.y - this.img.height / 2;
