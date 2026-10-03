@@ -1,20 +1,21 @@
 <html>
     <canvas id="flocons"width="800" height="800"></canvas>
 </html>
+<!-- ENGINE SCRIPTS -->
 <script src="engine/common.js"></script>
 <script src="engine/renderer.js"></script>
 <script src="engine/animation/animation.js"></script>
 <script src="engine/sprite/sprite.js"></script>
+<script src="engine/controls.js"></script>
+<!-- USER SCRIPTS -->
+<script src="hero.js"></script>
 <script>
+    hero = new Hero();
     anims = new Anim('idle', ['engine/sprite/default.png', 'engine/sprite/default2.png'], 10);
-    s = new Sprite(0, 0, 'engine/sprite/default2.png', [anims]);
-    setTimeout(() => {
-        s.destroy();
-    }, 1000);
+    s = new Sprite(0, 0, 'engine/sprite/default2.png', [anims], hero);
 </script>
 <!-- 
     TODO LIST
-    - control key
     - control mouse
     - move
     - lerp
