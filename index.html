@@ -12,14 +12,15 @@
 <script src="hero.js"></script>
 <script>
     hero = new Hero();
-    anims = new Anim('idle', ['engine/sprite/default.png', 'engine/sprite/default2.png'], 10);
+    anims = new Anim(
+        'idle', ['engine/sprite/default.png', 'engine/sprite/default2.png'], 10
+    );
     s = new Sprite(0, 0, 'engine/sprite/default2.png', [anims], hero);
 </script>
 <!-- 
     TODO LIST
-    - move
     - lerp
-    - change anim
+    - change anim + nextstep
     - collision
     - layers (draw + onmouse)
     - level map

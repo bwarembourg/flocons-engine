@@ -21,4 +21,7 @@ class Hero {
         }
     }
 
+    onmousedown(pos) {
+        this.sprite.moveToXY(400, 400, 100);
+    }
 }
