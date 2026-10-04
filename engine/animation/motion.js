@@ -83,6 +83,61 @@ class Motion {
             : (2 - Math.pow(2, -20 * x + 10)) / 2;
     }
 
+    static easeInCirc(x) {
+        return 1 - Math.sqrt(1 - Math.pow(x, 2));
+    }
+
+    static easeOutCirc(x) {
+        return Math.sqrt(1 - Math.pow(x - 1, 2));
+    }
+
+    static easeInOutCirc(x) {
+        return x < 0.5
+            ? (1 - Math.sqrt(1 - Math.pow(2 * x, 2))) / 2
+            : (Math.sqrt(1 - Math.pow(-2 * x + 2, 2)) + 1) / 2;
+    }
+
+    static easeInBack(x) {
+        const c1 = 1.70158;
+        const c3 = c1 + 1;
+        return c3 * x * x * x - c1 * x * x;
+    }
+
+    static easeOutBack(x) {
+        const c1 = 1.70158;
+        const c3 = c1 + 1;
+        return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+    }
+
+    static easeInOutBack(x) {
+        const c1 = 1.70158;
+        const c2 = c1 * 1.525;
+        return x < 0.5
+        ? (Math.pow(2 * x, 2) * ((c2 + 1) * 2 * x - c2)) / 2
+        : (Math.pow(2 * x - 2, 2) * ((c2 + 1) * (x * 2 - 2) + c2) + 2) / 2;
+    }
+
+    static easeInElastic(x) {
+        const c4 = (2 * Math.PI) / 3;
+        return x === 0 ? 0 : x === 1 ? 1 : -Math.pow(2, 10 * x - 10) * Math.sin((x * 10 - 10.75) * c4);
+    }
+
+    static easeOutElastic(x) {
+        const c4 = (2 * Math.PI) / 3;
+        return x === 0 ? 0 : x === 1 ? 1 : Math.pow(2, -10 * x) * Math.sin((x * 10 - 0.75) * c4) + 1;
+    }
+
+    static easeInOutElastic(x) {
+        const c5 = (2 * Math.PI) / 4.5;
+
+        return x === 0 ? 0 : x === 1 ? 1 : x < 0.5 ? -(Math.pow(2, 20 * x - 10) * Math.sin((20 * x - 11.125) * c5)) / 2
+            : (Math.pow(2, -20 * x + 10) * Math.sin((20 * x - 11.125) * c5)) / 2 + 1;
+    }
+
+    static easeInBounce(x) {
+        return 1 - this.easeOutBounce(1 - x);
+    }
+
     static easeOutBounce(x) {
         const n1 = 7.5625;
         const d1 = 2.75;
@@ -96,6 +151,12 @@ class Motion {
         } else {
             return n1 * (x -= 2.625 / d1) * x + 0.984375;
         }
+    }
+
+    static easeInOutBounce(x) {
+        return x < 0.5
+            ? (1 - this.easeOutBounce(1 - 2 * x)) / 2
+            : (1 + this.easeOutBounce(2 * x - 1)) / 2;
     }
 
     static addMotion(motion, x) {
@@ -118,8 +179,18 @@ class Motion {
             case Motions.EASE_IN_EXPO: return this.easeInExpo(x);
             case Motions.EASE_OUT_EXPO: return this.easeOutExpo(x);
             case Motions.EASE_IN_OUT_EXPO: return this.easeInOutExpo(x);
-
+            case Motions.EASE_IN_CIRC: return this.easeInCirc(x);
+            case Motions.EASE_OUT_CIRC: return this.easeOutCirc(x);
+            case Motions.EASE_IN_OUT_CIRC: return this.easeInOutCirc(x);
+            case Motions.EASE_IN_BACK: return this.easeInBack(x);
+            case Motions.EASE_OUT_BACK: return this.easeOutBack(x);
+            case Motions.EASE_IN_OUT_BACK: return this.easeInOutBack(x);
+            case Motions.EASE_IN_ELASTIC: return this.easeInElastic(x);
+            case Motions.EASE_OUT_ELASTIC: return this.easeOutElastic(x);
+            case Motions.EASE_IN_OUT_ELASTIC: return this.easeInOutElastic(x);
+            case Motions.EASE_IN_BOUNCE: return this.easeInBounce(x);
             case Motions.EASE_OUT_BOUNCE: return this.easeOutBounce(x);
+            case Motions.EASE_IN_OUT_BOUNCE: return this.easeInOutBounce(x);
             default: return this.linear(x);
         }
     }
@@ -146,7 +217,17 @@ const Motions = {
     EASE_IN_EXPO: 'EASE_IN_EXPO',
     EASE_OUT_EXPO: 'EASE_OUT_EXPO',
     EASE_IN_OUT_EXPO: 'EASE_IN_OUT_EXPO',
-
-    EASE_OUT_BOUNCE: 'EASE_OUT_BOUNCE'
+    EASE_IN_CIRC: 'EASE_IN_CIRC',
+    EASE_OUT_CIRC: 'EASE_OUT_CIRC',
+    EASE_IN_OUT_CIRC: 'EASE_IN_OUT_CIRC',
+    EASE_IN_BACK: 'EASE_IN_BACK',
+    EASE_OUT_BACK: 'EASE_OUT_BACK',
+    EASE_IN_OUT_BACK: 'EASE_IN_OUT_BACK',
+    EASE_IN_ELASTIC: 'EASE_IN_ELASTIC',
+    EASE_OUT_ELASTIC: 'EASE_OUT_ELASTIC',
+    EASE_IN_OUT_ELASTIC: 'EASE_IN_OUT_ELASTIC',
+    EASE_IN_BOUNCE: 'EASE_IN_BOUNCE',
+    EASE_OUT_BOUNCE: 'EASE_OUT_BOUNCE',
+    EASE_IN_OUT_BOUNCE: 'EASE_IN_OUT_BOUNCE'
 }
 
