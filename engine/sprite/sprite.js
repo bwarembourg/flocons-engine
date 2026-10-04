@@ -38,8 +38,16 @@ class Sprite {
                 this.moving = false;
                 this.x = this.dest.x - this.img.width / 2;
                 this.y = this.dest.y - this.img.height / 2;
+                if (this.callback) {
+                    this.callback();
+                }
             }
         }
+    }
+
+    setAnimationState(state, callback) {
+        this.animationState = state;
+        //TODO callback
     }
 
     onkeydown(keyState) {
@@ -91,7 +99,7 @@ class Sprite {
         }
     }
 
-    moveToXY(x, y, speed, motion) {
+    moveToXY(x, y, speed, motion, callback) {
         if (this.moving) {
             return;
         }
@@ -106,10 +114,12 @@ class Sprite {
         this.dest = {x: x, y: y};
         this.speed = speed;
         this.moving = true;
+        if (callback)
+            this.callback = callback;
     }
 
-    moveToSprite(sprite, speed, motion) {
-        this.moveToXY(sprite.getCenterPos(sprite), speed, motion);
+    moveToSprite(sprite, speed, motion, callback) {
+        this.moveToXY(sprite.getCenterPos(sprite), speed, motion, callback);
     }
 
     destroy() {
