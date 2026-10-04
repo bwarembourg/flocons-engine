@@ -14,6 +14,22 @@ class Motion {
         return -(Math.cos(Math.PI * x) - 1) / 2;
     }
 
+    static easeOutSine(x) {
+        return Math.sin((x * Math.PI) / 2);
+    }
+
+    static easeInQuad(x) {
+        return x * x;
+    }
+
+    static easeOutQuad(x) {
+        return 1 - (1 - x) * (1 - x);
+    }
+
+    static easeInOutQuad(x) {
+        return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+    }
+
     static easeOutBounce(x) {
         const n1 = 7.5625;
         const d1 = 2.75;
@@ -32,7 +48,11 @@ class Motion {
     static addMotion(motion, x) {
         switch(motion) {
             case Motions.EASE_IN_SINE: return this.easeInSine(x);
+            case Motions.EASE_OUT_SINE: return this.easeOutSine(x);
             case Motions.EASE_IN_OUT_SINE: return this.easeInOutSine(x);
+            case Motions.EASE_IN_QUAD: return this.easeInQuad(x);
+            case Motions.EASE_OUT_QUAD: return this.easeOutQuad(x);
+            case Motions.EASE_IN_OUT_QUAD: return this.easeInOutQuad(x);
             case Motions.EASE_OUT_BOUNCE: return this.easeOutBounce(x);
             default: return this.linear(x);
         }
@@ -43,7 +63,11 @@ class Motion {
 const Motions = {
     LINEAR: 'linear',
     EASE_IN_SINE: 'EASE_IN_SINE',
+    EASE_OUT_SINE: 'EASE_OUT_SINE',
     EASE_IN_OUT_SINE: 'EASE_IN_OUT_SINE',
+    EASE_IN_QUAD: 'EASE_IN_QUAD',
+    EASE_OUT_QUAD: 'EASE_OUT_QUAD',
+    EASE_IN_OUT_QUAD: 'EASE_IN_OUT_QUAD',
     EASE_OUT_BOUNCE: 'EASE_OUT_BOUNCE'
 }
 
