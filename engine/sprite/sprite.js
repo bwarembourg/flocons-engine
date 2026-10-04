@@ -29,9 +29,12 @@ class Sprite {
 
         //move
         if (this.moving) {
-            this.x += this.percentMoving * (this.dest.x - this.initialPos.x);
-            this.y += this.percentMoving * (this.dest.y - this.initialPos.y);
-            if (getDistance(this.getCenterPos(), this.dest) <= 500 / this.speed) {
+            this.stateWithMotion = Motion.addMotion(this.motion, this.statePercentMoving);
+            this.x = (this.initialPos.x - this.img.width /2) + this.stateWithMotion * (this.dest.x - this.initialPos.x);
+            this.y = (this.initialPos.y - this.img.height /2) + this.stateWithMotion * (this.dest.y - this.initialPos.y);
+            this.statePercentMoving += this.percentMoving;
+            this.counterSpeed++;
+            if (this.counterSpeed >= this.speed) {
                 this.moving = false;
                 this.x = this.dest.x - this.img.width / 2;
                 this.y = this.dest.y - this.img.height / 2;
@@ -88,19 +91,25 @@ class Sprite {
         }
     }
 
-    moveToXY(x, y, speed) {
+    moveToXY(x, y, speed, motion) {
         if (this.moving) {
             return;
         }
+        this.motion = Motions.LINEAR;
+        if (motion) {
+            this.motion = motion;
+        }
+        this.counterSpeed = 0;
         this.initialPos = this.getCenterPos();
         this.percentMoving = 1 / speed;
+        this.statePercentMoving = this.percentMoving;
         this.dest = {x: x, y: y};
         this.speed = speed;
         this.moving = true;
     }
 
-    moveToSprite(sprite, speed) {
-        this.moveToXY(sprite.getCenterPos(sprite), speed);
+    moveToSprite(sprite, speed, motion) {
+        this.moveToXY(sprite.getCenterPos(sprite), speed, motion);
     }
 
     destroy() {

@@ -22,6 +22,6 @@ class Hero {
     }
 
     onmousedown(pos) {
-        this.sprite.moveToXY(400, 400, 10);
+        this.sprite.moveToXY(400, 400, 30, Motions.EASE_OUT_BOUNCE);
     }
 }
