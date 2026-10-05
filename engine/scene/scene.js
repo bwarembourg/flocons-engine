@@ -4,6 +4,7 @@ class Scene {
         this.startingScene = startingScene;
         this.UI = UI;
         this.sprites = new Array();
+        this.texts = new Array();
         if (object) {
             this.object = object;
             this.object.scene = this;
@@ -33,6 +34,7 @@ class Scene {
 
     destroy() {
         this.sprites.forEach(s => s.destroy());
+        this.texts.forEach(t => t.destroy());
     }
 
     onkeydown() {

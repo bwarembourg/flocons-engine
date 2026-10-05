@@ -11,7 +11,7 @@ class Sprite {
     // can collide
     // margin collider
 
-    constructor(id, layer, tag, scene, x, y, src, animations, object, canCollide, marginCollider) {
+    constructor(id, layer, tag, scene, x, y, src, animations, object, canCollide, marginCollider, enabled = true) {
         this.id = id;
         this.layer = layer;
         this.tag = tag;
@@ -22,6 +22,7 @@ class Sprite {
         this.y = y;
         this.animations = animations;
         this.animationState = 'idle';
+        this.enabled = enabled;
         this.img = new Image();
         if (object) {
             this.object = object;

@@ -24,12 +24,21 @@ function draw() {
 
     //SCENE
     if (currentScene) {
-        currentScene.update();    
+        currentScene.update();
         for(var i = 0; i <= 1000; i++) {
             const layerSprites = this.currentScene.sprites.filter(s => s.layer == i);
             for (let sprite of layerSprites) {
                 sprite.update();
-                ctx.drawImage(sprite.img, sprite.x, sprite.y);
+                if (sprite.enabled) {
+                    ctx.drawImage(sprite.img, sprite.x, sprite.y);
+                }
+            }
+            const layerTexts = this.currentScene.texts.filter(s => s.layer == i);
+            for (let text of layerTexts) {
+                text.update();
+                if (text.enabled) {
+                    renderText(text);
+                }
             }
         }
         currentScene.UI.update();
@@ -37,7 +46,16 @@ function draw() {
             const uiLayerSprites = this.currentScene.UI.sprites.filter(s => s.layer == i);
             for (let sprite of uiLayerSprites) {
                 sprite.update();
-                ctx.drawImage(sprite.img, sprite.x, sprite.y);
+                if (sprite.enabled) {
+                    ctx.drawImage(sprite.img, sprite.x, sprite.y);
+                }
+            }
+            const uiLayerTexts = this.currentScene.UI.texts.filter(s => s.layer == i);
+            for (let text of uiLayerTexts) {
+                text.update();
+                if (text.enabled) {
+                    renderText(text);
+                }
             }
         }
     }
@@ -50,7 +68,13 @@ function changeScene(id) {
     if (nextScene) {
         currentScene.destroy();
         currentScene = nextScene;
-        console.log(currentScene);
         currentScene.setup();
     }
+}
+
+function renderText(text) {
+    ctx.font = text.size + " " + text.font;
+    ctx.fillStyle = text.color;
+    ctx.textAlign = text.align;
+    ctx.fillText(text.text, text.x, text.y);
 }

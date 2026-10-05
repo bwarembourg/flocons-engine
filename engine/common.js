@@ -31,3 +31,12 @@ function findByLayer(layer) {
 function findByTag(tag) {
     return currentScene?.sprites.filter(s => s.tag == tag);
 }
+
+function getHighestSprite(sprites) {
+    if (!sprites || sprites.length === 0)
+        return null;
+    sprites.sort((a, b) => b.layer - a.layer);
+    if (sprites.length > 0)
+        return sprites[0];
+    return null;
+}

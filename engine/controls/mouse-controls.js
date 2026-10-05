@@ -12,22 +12,22 @@ function  getMousePos(evt) {
 canvas.addEventListener("mousedown", function (e) {
     const pos = getMousePos(e);
     currentScene?.onmousedown();
-    currentScene?.sprites?.forEach(s => {
-        if (isSpriteInPos(s, pos)) {
-            s.onmousedown(pos);
-        }
-    });
-}); 
+    const mouseDownedSprites = currentScene?.sprites?.filter(s => isSpriteInPos(s, pos));
+    const mouseDownsprite = getHighestSprite(mouseDownedSprites);
+    if (mouseDownsprite) {
+        mouseDownsprite.onmousedown(pos);
+    }
+});
 
 canvas.addEventListener("mouseup", function (e) {
     const pos = getMousePos(e);
     currentScene?.onmouseup();
-    currentScene?.sprites?.forEach(s => {
-        if (isSpriteInPos(s, pos)) {
-            s.onmouseup(pos);
-        }
-    });
-}); 
+    const mouseUppedSprites = currentScene?.sprites?.filter(s => isSpriteInPos(s, pos));
+    const mouseUppedsprite = getHighestSprite(mouseUppedSprites);
+    if (mouseUppedsprite) {
+        mouseUppedsprite.onmouseup(pos);
+    }
+});
 
 canvas.addEventListener("mousemove", function (e) {
     const pos = getMousePos(e);
