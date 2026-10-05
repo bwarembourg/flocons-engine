@@ -24,7 +24,8 @@ class Sprite {
 
         // animation
         if (this.animations && this.animations.length > 0) {
-            this.img.src = this.animations.find(a => a.name === this.animationState)?.getImage();
+            const newImg = this.animations.find(a => a.name === this.animationState)?.getImage(this.callback);
+            this.img = newImg || null;
         }
 
         //move
@@ -47,7 +48,7 @@ class Sprite {
 
     setAnimationState(state, callback) {
         this.animationState = state;
-        //TODO callback
+        this.callback = callback;
     }
 
     onkeydown(keyState) {

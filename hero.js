@@ -17,7 +17,7 @@ class Hero {
             this.sprite.x += 10;
         }
         if (isKeyOk(keys)) {
-            this.sprite.destroy();
+            this.sprite.setAnimationState('die');
         }
     }
 

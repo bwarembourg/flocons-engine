@@ -7,29 +7,30 @@
 <script src="engine/animation/animation.js"></script>
 <script src="engine/animation/motion.js"></script>
 <script src="engine/sprite/sprite.js"></script>
+<script src="engine/sprite/sprite-img.js"></script>
 <script src="engine/controls/key-controls.js"></script>
 <script src="engine/controls/mouse-controls.js"></script>
 <!-- USER SCRIPTS -->
 <script src="hero.js"></script>
 <script>
     hero = new Hero();
-    anims = new Anim(
-        'idle', ['engine/sprite/default.png', 'engine/sprite/default2.png'], 10
-    );
-    s = new Sprite(0, 0, 'engine/sprite/default2.png', [anims], hero);
+    idle = new Anim('idle', ['sprite/cinnamon1.png', 'sprite/cinnamon2.png', 'sprite/cinnamon3.png', 'sprite/cinnamon4.png'], 10);
+    die = new Anim('die', ['sprite/cinnamon die1.png', 'sprite/cinnamon die2.png', 'sprite/cinnamon die3.png', 'sprite/cinnamon die4.png',
+        'sprite/cinnamon die5.png', 'sprite/cinnamon die6.png', 'sprite/cinnamon die7.png', 'sprite/cinnamon die8.png', 'sprite/cinnamon die9.png', 
+        'sprite/cinnamon die10.png'], 10)
+    s = new Sprite(0, 0, 'engine/sprite/default2.png', [idle, die], hero);
+
 </script>
-<!-- 
-    TODO LIST
-    - change anim + nextstep + callback
+<!-- TODO LIST
     - collision
+    - rotation on center
     - layers (draw + onmouse)
     - tag + id (find by tag, fing by id)
     - scenes (scenes.sprite, scenes.UI (a scene for UI), onmouse, onkey)
     - documentation how to make game object with empty exemple
     - documentation how to make a scene with UI
     - level map
-    - text (minecraftia)
-    - text blinker
+    - text (minecraftia) w/ blinker, center h, center v
     - zoom
     - dialogs
     - save manager
@@ -38,10 +39,11 @@
     - sfx 
     - particles
 
-
     BACKLOG 
-    - Motion on sprite size/scale
+    - rotation from a point (w/ motion)
+    - scale (w/ motion)
+    - platformer jump
+    - physic ball
     - controller support
     - build to desktop app
-
 -->

@@ -1,5 +1,13 @@
 sprites = new Array();
-draw();
+spriteImgs = new Array();
+spriteLoaded = 0;
+
+function onLoadImg() {
+    spriteLoaded++;
+    if (spriteImgs.length == spriteLoaded) {
+        draw();
+    }
+}
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);

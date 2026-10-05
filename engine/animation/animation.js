@@ -6,16 +6,23 @@ class Anim {
     // spriteId
     // currentImage
 
-    constructor(name, spriteImgs, speed) {
+    constructor(name, spriteSrcs, speed) {
         this.name = name;
-        this.spriteImgs = spriteImgs;
+        this.spriteImgs = [];
+        spriteSrcs.forEach(src => {
+            this.spriteImgs.push(new SImg(src))
+        });
         this.speed = speed;
         this.frameId = 0;
         this.spriteId = 0;
         this.currentImage = this.spriteImgs[0]; 
     }
 
-    getImage() {
+    resetFrameId() {
+        frameId++;
+    }
+
+    getImage(callback) {
         this.frameId++;
         if (this.frameId >= this.speed) {
             this.frameId = 0;
@@ -23,9 +30,12 @@ class Anim {
                 this.spriteId++;
             } else {
                 this.spriteId = 0;
+                if (callback) {
+                    callback();
+                }
             }
             this.currentImage = this.spriteImgs[this.spriteId];
         }
-        return this.currentImage;
+        return this.currentImage.img;
     }
 }
