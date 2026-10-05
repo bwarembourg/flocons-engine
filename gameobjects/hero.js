@@ -22,7 +22,7 @@ class Hero {
     }
 
     onmousedown(pos) {
-        this.sprite.moveToXY(400, 400, 30, Motions.EASE_IN_OUT_BACK, this.changeScene);
+        this.sprite.moveToXY(400, 400, 60, Motions.EASE_IN_OUT_BACK, this.changeScene);
     }
 
     changeScene() {

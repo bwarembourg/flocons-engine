@@ -10,6 +10,6 @@ const uiSceneObj = new UIScene();
 const uiScene = new Scene('ui', uiSceneObj, false, null)
 
 const testSceneObj = new TestScene();
-const testScene = new Scene('test', testSceneObj, true, uiScene);
+const testScene = new Scene('test', testSceneObj, false, uiScene);
 const testScene2Obj = new Test2();
-const testScene2 = new Scene('test2', testScene2Obj, false, uiScene);
+const testScene2 = new Scene('test2', testScene2Obj, true, uiScene);

@@ -8,7 +8,10 @@ function onLoadImg() {
     spriteLoaded++;
     if (spriteImgs.length == spriteLoaded) {
         currentScene = scenes.find(s => s.startingScene);
-        currentScene.setup();
+        if (currentScene)
+            currentScene.setup();
+        else 
+            console.error("No starting scene found.");
         draw();
     }
 }
@@ -27,7 +30,7 @@ function draw() {
         currentScene.update();
         for(var i = 0; i <= 1000; i++) {
             const layerSprites = this.currentScene.sprites.filter(s => s.layer == i);
-            for (let sprite of layerSprites) {
+            for (var sprite of layerSprites) {
                 sprite.update();
                 if (sprite.enabled) {
                     ctx.drawImage(sprite.img, sprite.x, sprite.y);
@@ -41,20 +44,22 @@ function draw() {
                 }
             }
         }
-        currentScene.UI.update();
-        for(var i = 0; i <= 1000; i++) {
-            const uiLayerSprites = this.currentScene.UI.sprites.filter(s => s.layer == i);
-            for (let sprite of uiLayerSprites) {
-                sprite.update();
-                if (sprite.enabled) {
-                    ctx.drawImage(sprite.img, sprite.x, sprite.y);
+        if (currentScene.UI) {
+            currentScene.UI.update();
+            for(var i = 0; i <= 1000; i++) {
+                const uiLayerSprites = this.currentScene.UI.sprites.filter(s => s.layer == i);
+                for (let sprite of uiLayerSprites) {
+                    sprite.update();
+                    if (sprite.enabled) {
+                        ctx.drawImage(sprite.img, sprite.x, sprite.y);
+                    }
                 }
-            }
-            const uiLayerTexts = this.currentScene.UI.texts.filter(s => s.layer == i);
-            for (let text of uiLayerTexts) {
-                text.update();
-                if (text.enabled) {
-                    renderText(text);
+                const uiLayerTexts = this.currentScene.UI.texts.filter(s => s.layer == i);
+                for (let text of uiLayerTexts) {
+                    text.update();
+                    if (text.enabled) {
+                        renderText(text);
+                    }
                 }
             }
         }
@@ -73,8 +78,22 @@ function changeScene(id) {
 }
 
 function renderText(text) {
+    if (text.outlineColor && text.outlineWidth) {
+         renderOutline(text);
+         return;
+    }
     ctx.font = text.size + " " + text.font;
     ctx.fillStyle = text.color;
     ctx.textAlign = text.align;
+    ctx.fillText(text.text, text.x, text.y);
+}
+
+function renderOutline(text) {
+    ctx.font = text.size + " " + text.font;
+    ctx.textAlign = text.align;
+    ctx.strokeStyle = text.outlineColor;
+    ctx.lineWidth = text.outlineWidth;
+    ctx.strokeText(text.text, text.x, text.y);
+    ctx.fillStyle = text.color;
     ctx.fillText(text.text, text.x, text.y);
 }

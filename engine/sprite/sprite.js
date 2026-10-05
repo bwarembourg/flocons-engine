@@ -41,7 +41,7 @@ class Sprite {
 
         // animation
         if (this.animations && this.animations.length > 0) {
-            const newImg = this.animations.find(a => a.name === this.animationState)?.getImage(this.callback);
+            const newImg = this.animations.find(a => a.name === this.animationState)?.getImage(this.callbackAnim);
             this.img = newImg || null;
         }
 
@@ -53,6 +53,7 @@ class Sprite {
             this.statePercentMoving += this.percentMoving;
             this.counterSpeed++;
             if (this.counterSpeed >= this.speed) {
+                this.counterSpeed = 0;
                 this.moving = false;
                 this.x = this.dest.x - this.img.width / 2;
                 this.y = this.dest.y - this.img.height / 2;
@@ -79,7 +80,7 @@ class Sprite {
 
     setAnimationState(state, callback) {
         this.animationState = state;
-        this.callback = callback;
+        this.callbackAnim = callback;
     }
 
     onkeydown(keyState) {

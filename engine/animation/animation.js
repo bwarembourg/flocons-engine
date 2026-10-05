@@ -23,6 +23,7 @@ class Anim {
     }
 
     getImage(callback) {
+        this.callback = callback;
         this.frameId++;
         if (this.frameId >= this.speed) {
             this.frameId = 0;
@@ -30,8 +31,8 @@ class Anim {
                 this.spriteId++;
             } else {
                 this.spriteId = 0;
-                if (callback) {
-                    callback();
+                if (this.callback) {
+                    this.callback();
                 }
             }
             this.currentImage = this.spriteImgs[this.spriteId];
