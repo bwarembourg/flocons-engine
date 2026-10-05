@@ -1,24 +1,33 @@
 class Sprite {
+    // id
     // x
     // y 
     // img
     // animations[]
+    // gameobject
+    // can collide
 
-    constructor(x, y, src, animations, object) {
+    constructor(id, x, y, src, animations, object, canCollide, marginCollider) {
+        this.id = id;
+        this.canCollide = canCollide;
+        this.marginCollider = marginCollider || 0;
         this.x = x;
         this.y = y;
         this.animations = animations;
         this.animationState = 'idle';
         this.img = new Image();
-        this.object = object;
-        this.object.sprite = this;
+        if (object) {
+            this.object = object;
+            this.object.sprite = this;
+        }
         this.img.src = src || 'engine/sprite/default.png';
         sprites.push(this);
+        this.collides = new Map();
     }
 
     update() {
         // object update
-        if (this.object.update) {
+        if (this.object?.update) {
             this.object.update();
         }
 
@@ -44,6 +53,20 @@ class Sprite {
                 }
             }
         }
+
+        // collider 
+        if (this.canCollide) {
+            const sprite = this;
+            sprites.forEach(s => {
+                if (sprite != s) {
+                    if (doSpritesCollide(sprite, s, this.marginCollider)) {
+                        s.onSpriteEnter(sprite);
+                    } else {
+                        s.onSpriteExit(sprite);
+                    }
+                }
+            });
+        }
     }
 
     setAnimationState(state, callback) {
@@ -52,25 +75,25 @@ class Sprite {
     }
 
     onkeydown(keyState) {
-        if (this.object.onkeydown) {
+        if (this.object?.onkeydown) {
             this.object.onkeydown(keyState);
         }
     }
 
     onkeyup(keyState) {
-        if (this.object.onkeyup) {
+        if (this.object?.onkeyup) {
             this.object.onkeyup(keyState);
         }
     }
 
     onmousedown(pos) {
-        if (this.object.onmousedown) {
+        if (this.object?.onmousedown) {
             this.object.onmousedown(pos);
         }
     }
 
     onmouseup(pos) {
-        if (this.object.onmouseup) {
+        if (this.object?.onmouseup) {
             this.object.onmouseup(pos);
         }
     }
@@ -79,7 +102,7 @@ class Sprite {
         if (this.mousein)
             return;
         this.mousein = true;
-        if (this.object.onmousein) {
+        if (this.object?.onmousein) {
             this.object.onmousein(pos);
         }
     }
@@ -88,8 +111,28 @@ class Sprite {
         if (!this.mousein) 
             return;
         this.mousein = false;
-        if (this.object.onmouseout) {
+        if (this.object?.onmouseout) {
             this.object.onmouseout(pos);
+        }
+    }
+
+    onSpriteEnter(sprite) {
+        if (!this.collides.get(sprite.id)) {
+            this.collides.set(sprite.id, true);
+            if (this.object?.onSpriteEnter) {
+                this.object.onSpriteEnter(sprite);
+            }
+            console.log('sprite enter');
+        }
+    }
+
+    onSpriteExit(sprite) {
+        if (this.collides.get(sprite.id)) {
+            this.collides.set(sprite.id, false);
+            if (this.object?.onSpriteExit) {
+                this.object.onSpriteExit(sprite);
+            }
+            console.log('sprite exit');
         }
     }
 

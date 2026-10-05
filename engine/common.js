@@ -7,6 +7,13 @@ function isSpriteInPos(sprite, pos) {
         && pos.y >= sprite.y && pos.y <= sprite.y + sprite.img.height;
 }
 
+function doSpritesCollide(sprite1, sprite2, margin) {
+    return isSpriteInPos(sprite2, {x: sprite1.x + margin, y: sprite1.y + margin}) ||
+    isSpriteInPos(sprite2, {x: sprite1.x + sprite1.img.width - margin , y: sprite1.y + margin}) ||
+    isSpriteInPos(sprite2, {x: sprite1.x + margin, y: sprite1.y + sprite1.img.height - margin}) ||
+    isSpriteInPos(sprite2, {x: sprite1.x + sprite1.img.width - margin, y: sprite1.y + sprite1.img.height - margin});
+}
+
 function getDistance(pos1, pos2) {
     x = Math.abs(pos2.x - pos1.x);
     y = Math.abs(pos2.y - pos1.y);
