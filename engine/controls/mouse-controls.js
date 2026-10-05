@@ -11,7 +11,8 @@ function  getMousePos(evt) {
 
 canvas.addEventListener("mousedown", function (e) {
     const pos = getMousePos(e);
-    sprites.forEach(s => {
+    currentScene?.onmousedown();
+    currentScene?.sprites?.forEach(s => {
         if (isSpriteInPos(s, pos)) {
             s.onmousedown(pos);
         }
@@ -20,7 +21,8 @@ canvas.addEventListener("mousedown", function (e) {
 
 canvas.addEventListener("mouseup", function (e) {
     const pos = getMousePos(e);
-    sprites.forEach(s => {
+    currentScene?.onmouseup();
+    currentScene?.sprites?.forEach(s => {
         if (isSpriteInPos(s, pos)) {
             s.onmouseup(pos);
         }
@@ -29,7 +31,7 @@ canvas.addEventListener("mouseup", function (e) {
 
 canvas.addEventListener("mousemove", function (e) {
     const pos = getMousePos(e);
-    sprites.forEach(s => {
+    currentScene?.sprites?.forEach(s => {
         if (isSpriteInPos(s, pos)) {
             s.onmousein(pos);
         } else {
@@ -40,7 +42,7 @@ canvas.addEventListener("mousemove", function (e) {
 
 canvas.addEventListener("mouseout", function (e) {
     const pos = getMousePos(e);
-    sprites.forEach(s => {
+    currentScene?.sprites?.forEach(s => {
         if (isSpriteInPos(s, pos)) {
             s.onmouseout(pos);
         }

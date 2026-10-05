@@ -21,13 +21,13 @@ function getDistance(pos1, pos2) {
 }
 
 function findById(id) {
-    return sprites.find(s => s.id == id);
+    return currentScene?.sprites.find(s => s.id == id);
 }
 
 function findByLayer(layer) {
-    return sprites.filter(s => s.layer == layer);
+    return currentScene?.sprites.filter(s => s.layer == layer);
 }
 
 function findByTag(tag) {
-    return sprites.filter(s => s.tag == tag);
+    return currentScene?.sprites.filter(s => s.tag == tag);
 }

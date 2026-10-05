@@ -2,29 +2,25 @@
     <canvas id="flocons"width="960" height="540"></canvas>
 </html>
 <!-- ENGINE SCRIPTS -->
+<script src="start-here.js" defer></script>
 <script src="engine/common.js"></script>
 <script src="engine/renderer.js"></script>
 <script src="engine/animation/animation.js"></script>
 <script src="engine/animation/motion.js"></script>
 <script src="engine/sprite/sprite.js"></script>
+<script src="engine/scene/scene.js"></script>
 <script src="engine/sprite/sprite-img.js"></script>
 <script src="engine/controls/key-controls.js"></script>
 <script src="engine/controls/mouse-controls.js"></script>
 <!-- USER SCRIPTS -->
-<script src="hero.js"></script>
+<script src="gameobjects/hero.js"></script>
+<script src="scenes/test-scene.js"></script>
+<script src="scenes/scene2.js"></script>
+<script src="scenes/ui-scene.js"></script>
 <script>
-    hero = new Hero();
-    idle = new Anim('idle', ['sprite/cinnamon1.png', 'sprite/cinnamon2.png', 'sprite/cinnamon3.png', 'sprite/cinnamon4.png'], 10);
-    die = new Anim('die', ['sprite/cinnamon die1.png', 'sprite/cinnamon die2.png', 'sprite/cinnamon die3.png', 'sprite/cinnamon die4.png',
-        'sprite/cinnamon die5.png', 'sprite/cinnamon die6.png', 'sprite/cinnamon die7.png', 'sprite/cinnamon die8.png', 'sprite/cinnamon die9.png', 
-        'sprite/cinnamon die10.png'], 10)
-    s = new Sprite('hero', 10, 'hero', 0, 0, 'engine/sprite/default2.png', [idle, die], hero, true, 10);
-    s = new Sprite('test', 9, 'collectible', 50, 50, 'engine/sprite/default2.png', [], null);
 
 </script>
 <!-- TODO LIST
-    - scenes (scenes.sprite, scenes.UI (a scene for UI), onmouse, onkey, update, changescene)
-    - setup() for scene and sprite
     - documentation how to make game object with empty exemple
     - documentation how to make a scene with UI
     - text (minecraftia) w/ blinker, center h, center v, write char by char

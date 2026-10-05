@@ -1,17 +1,21 @@
 class Sprite {
     // id
     // layer
+    // tag
+    // scene
     // x
     // y 
     // img
     // animations[]
     // gameobject
     // can collide
+    // margin collider
 
-    constructor(id, layer, tag, x, y, src, animations, object, canCollide, marginCollider) {
+    constructor(id, layer, tag, scene, x, y, src, animations, object, canCollide, marginCollider) {
         this.id = id;
         this.layer = layer;
         this.tag = tag;
+        this.scene = scene;
         this.canCollide = canCollide;
         this.marginCollider = marginCollider || 0;
         this.x = x;
@@ -24,7 +28,7 @@ class Sprite {
             this.object.sprite = this;
         }
         this.img.src = src || 'engine/sprite/default.png';
-        sprites.push(this);
+        this.scene.sprites.push(this);
         this.collides = new Map();
     }
 
@@ -60,7 +64,7 @@ class Sprite {
         // collider 
         if (this.canCollide) {
             const sprite = this;
-            sprites.forEach(s => {
+            this.scene.sprites.forEach(s => {
                 if (sprite != s) {
                     if (doSpritesCollide(sprite, s, this.marginCollider)) {
                         s.onSpriteEnter(sprite);
@@ -168,6 +172,6 @@ class Sprite {
     }
 
     destroy() {
-        sprites.splice(sprites.indexOf(this), 1);
+        this.scene.sprites.splice(this.scene.sprites.indexOf(this), 1);
     }
 }

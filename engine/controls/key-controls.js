@@ -11,10 +11,12 @@ var keyOn = false;
 function controlLoop() {
     var map = Object.entries(keyState);
     if (map.find(m => m[1])) {
-        sprites.forEach(s => s.onkeydown(getKeysDown(keyState)));
+        currentScene?.onkeydown(getKeysDown(keyState));
+        currentScene?.sprites?.forEach(s => s.onkeydown(getKeysDown(keyState)));
         keyOn = true;
     } else if (keyOn) {
-        sprites.forEach(s => s.onkeyup(getKeysDown(keyState)));
+        currentScene?.onkeyup(getKeysDown(keyState));
+        currentScene?.sprites?.forEach(s => s.onkeyup(getKeysDown(keyState)));
         keyOn = false;
     }
     // redraw/reposition your object here
