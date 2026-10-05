@@ -11,7 +11,12 @@ class Sprite {
     // can collide
     // margin collider
 
-    constructor(id, layer, tag, scene, x, y, src, animations, object, canCollide, marginCollider, enabled = true) {
+    constructor(obj) {      
+        this.setupConstructor(obj.id, obj.layer, obj.tag, obj.scene, obj.x, obj.y, obj.src, obj.animations, obj.object, 
+            obj.canCollide, obj.marginCollider, obj.enabled);
+    }
+
+    setupConstructor(id, layer, tag, scene, x, y, src, animations, object, canCollide, marginCollider, enabled = true) {
         this.id = id;
         this.layer = layer;
         this.tag = tag;
