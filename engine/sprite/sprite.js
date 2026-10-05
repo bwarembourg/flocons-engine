@@ -1,5 +1,6 @@
 class Sprite {
     // id
+    // layer
     // x
     // y 
     // img
@@ -7,8 +8,10 @@ class Sprite {
     // gameobject
     // can collide
 
-    constructor(id, x, y, src, animations, object, canCollide, marginCollider) {
+    constructor(id, layer, tag, x, y, src, animations, object, canCollide, marginCollider) {
         this.id = id;
+        this.layer = layer;
+        this.tag = tag;
         this.canCollide = canCollide;
         this.marginCollider = marginCollider || 0;
         this.x = x;
@@ -122,7 +125,6 @@ class Sprite {
             if (this.object?.onSpriteEnter) {
                 this.object.onSpriteEnter(sprite);
             }
-            console.log('sprite enter');
         }
     }
 
@@ -132,7 +134,6 @@ class Sprite {
             if (this.object?.onSpriteExit) {
                 this.object.onSpriteExit(sprite);
             }
-            console.log('sprite exit');
         }
     }
 

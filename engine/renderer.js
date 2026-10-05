@@ -16,9 +16,12 @@ function draw() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.stroke();
 
-    for (let sprite of sprites) {
-        sprite.update();
-        ctx.drawImage(sprite.img, sprite.x, sprite.y);
+    for(var i = 0; i <= 1000; i++) {
+        layerSprites = sprites.filter(s => s.layer == i);
+        for (let sprite of layerSprites) {
+            sprite.update();
+            ctx.drawImage(sprite.img, sprite.x, sprite.y);
+        }
     }
     setTimeout(draw, 1000/60); // 60fps
 }

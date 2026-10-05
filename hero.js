@@ -23,5 +23,8 @@ class Hero {
 
     onmousedown(pos) {
         this.sprite.moveToXY(400, 400, 30, Motions.EASE_IN_OUT_BACK);
+        console.log('byid test:', findById('test'));
+        console.log('bylayer 10', findByLayer(10));
+        console.log('bytag hero', findByTag('hero'));
     }
 }
