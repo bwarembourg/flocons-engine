@@ -12,7 +12,7 @@ function onLoadImg() {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = "#BDCCC5";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.stroke();
 
