@@ -12,7 +12,6 @@ class Prefab {
         if (this.object.setupTexts)
             this.texts = this.object.setupTexts();
 
-        console.log('add to scene', obj);
         this.sprites.forEach(sprite => {
             sprite.x = obj.x + sprite.initialX;
             sprite.y = obj.y + sprite.initialY;
@@ -20,7 +19,13 @@ class Prefab {
             sprite.scene = obj.scene;
             obj.scene.sprites.push(sprite);
         });
-        console.log('scene now:', obj.scene)
+        this.texts.forEach(text => {
+            text.x = obj.x + text.initialX;
+            text.y = obj.y + text.initialY;
+            text.layer = obj.layer + text.initialLayer;
+            text.scene = obj.scene;
+            obj.scene.texts.push(text);
+        });
     }
 
     destroy() {

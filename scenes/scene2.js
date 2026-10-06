@@ -41,7 +41,7 @@ class Test2 {
             dial: true,
             speed: 2,
             callback: this.callback,
-            align: 'left', size: '16 px', color: 'white', enabled: true
+            align: 'left', size: '16px', color: 'white', enabled: true
         });
 
         testPrefab.addToScene({

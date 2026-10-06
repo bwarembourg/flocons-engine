@@ -38,7 +38,6 @@ class TestScene {
             y: 300,
             layer: 20
         });
-        console.log('this.scene', this.scene);
     }
 
     update() {

@@ -12,19 +12,26 @@ class TextSprite {
         this.text = dial ? "" : text;
         this.x = x;
         this.y = y;
+        this.initialX = x;
+        this.initialY = y;
+        this.initialLayer = layer;
         this.align = align;
         this.size = size;
         this.font = font;
         this.color = color;
         this.blink = blink;
         this.dial = dial;
-        this.scene = scene;
+        if (scene) {
+            this.scene = scene;
+        }
         this.enabled = enabled;
         this.speed = speed;
         this.countFps = 0;
         this.countDial = 1;
         this.callback = callback;
-        this.scene.texts.push(this);
+        if (this.scene) {
+            this.scene.texts.push(this);
+        } 
     }
 
     update() {

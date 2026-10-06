@@ -7,8 +7,8 @@ class TestPrefab {
             layer: 10,
             tag: 'hero',
             scene: null,
-            x: 0,
-            y: 0,
+            x: 100,
+            y: 100,
             src: 'engine/sprite/default2.png',
             animations: [idle, die],
             object: null, 
@@ -21,8 +21,8 @@ class TestPrefab {
             layer: 9,
             tag: 'collectible',
             scene: null,
-            x: hero.getCenterPos().x,
-            y: hero.getCenterPos().y,
+            x: 0,
+            y: 0,
             src: 'engine/sprite/default2.png',
             animations: [],
             object: null, 
@@ -31,5 +31,22 @@ class TestPrefab {
             enabled: true
         });
         return [hero, test];
+    }
+
+    setupTexts () {
+        const coucouTxt = new TextSprite({
+            id: 'coucou',
+            text: 'coucou !',
+            layer: 40,
+            x: 100,
+            y: 100,
+            scene: null,
+            blink: false,
+            dial: false, 
+            speed: 10,
+            callback: this.callback,
+            align: 'center', size: '30px', color: 'black', enabled: true
+        });
+        return [coucouTxt];
     }
 }
