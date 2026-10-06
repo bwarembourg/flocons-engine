@@ -43,6 +43,13 @@ class Test2 {
             callback: this.callback,
             align: 'left', size: '16 px', color: 'white', enabled: true
         });
+
+        testPrefab.addToScene({
+            scene: this.scene,
+            x: 600,
+            y: 300,
+            layer: 20
+        });
     }
 
     update() {

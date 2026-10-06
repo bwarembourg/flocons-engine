@@ -10,26 +10,29 @@ const die = new Anim({
 
 
 // Define prefabs here
-
+const testPrefab = new Prefab({
+    id: 'testPrefab',
+    object: new TestPrefab()
+});
 
 // Define Scenes here
 const uiScene = new Scene({
     id: 'ui',
     object: new UIScene(),
     startingScene: false,
-    ui: null
+    UI: null
 });
 
 const testScene = new Scene({
-    id: 'ui',
+    id: 'test',
     object: new TestScene(),
     startingScene: true,
-    ui: uiScene
+    UI: uiScene
 });
 
 const testScene2 = new Scene({
     id: 'test2',
     object: new Test2(),
     startingScene: false,
-    ui: uiScene
+    UI: uiScene
 })

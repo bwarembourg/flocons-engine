@@ -20,11 +20,15 @@ class Sprite {
         this.id = id;
         this.layer = layer;
         this.tag = tag;
-        this.scene = scene;
+        if (scene)
+            this.scene = scene;
         this.canCollide = canCollide;
         this.marginCollider = marginCollider || 0;
         this.x = x;
         this.y = y;
+        this.initialX = x;
+        this.initialY = y;
+        this.initialLayer = layer;
         this.animations = animations;
         this.animationState = 'idle';
         this.enabled = enabled;
@@ -34,11 +38,16 @@ class Sprite {
             this.object.sprite = this;
         }
         this.img.src = src || 'engine/sprite/default.png';
-        this.scene.sprites.push(this);
+        if (scene) {
+            this.scene.sprites.push(this);
+        }
         this.collides = new Map();
     }
 
     update() {
+        if (!this.scene) {
+            return;
+        }
         // object update
         if (this.object?.update) {
             this.object.update();
