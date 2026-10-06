@@ -29,7 +29,8 @@ class Prefab {
     }
 
     destroy() {
-
+        this.sprites.forEach(s => s.destroy);
+        this.texts.forEach(t => t.destroy());
     }
 
 }
