@@ -1,5 +1,11 @@
 class TextSprite {
-    constructor(id, text, layer, x, y, scene, blink = false, dial = false, speed = 10, callback = null, align = 'center', size= "16px", font = "minecraftia", color = "black", enabled = true) {
+    constructor(obj) {
+        this.setupConstructor(obj.id, obj.text, obj.layer, obj.x, obj.y, obj.scene, obj.blink, obj.dial, obj.speed,
+            obj.callback, obj.align, obj.size, obj.font, obj.color, obj.enabled);
+    }
+
+    setupConstructor(id, text, layer, x, y, scene, blink = false, dial = false, speed = 10, callback = null, align = 'center', 
+        size= "16px", font = "minecraftia", color = "black", enabled = true) {
         this.id = id;
         this.layer = layer;
         this.fullText = text;

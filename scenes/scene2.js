@@ -17,8 +17,32 @@ class Test2 {
             marginCollider: 10,
             enabled: true
         });
-        new TextSprite('bjr', 'bjr', 20, 100, 80, this.scene, true, false, 10);
-        new TextSprite('bjr c boris ca va ?', 'bjr c boris ca va ?', 20, 200, 80, this.scene, false, true, 2, this.callback, 'left');
+
+        new TextSprite({
+            id: 'bjr',
+            text: 'bjr',
+            layer: 20,
+            x: 100,
+            y: 80,
+            scene: this.scene,
+            blink: true,
+            dial: false, 
+            speed: 10
+        })
+
+        new TextSprite({
+            id: 'bjr2',
+            text: 'bjr c boris ca va ?',
+            layer: 20,
+            x: 200,
+            y: 80,
+            scene: this.scene,
+            blink: false,
+            dial: true,
+            speed: 2,
+            callback: this.callback,
+            align: 'left', size: '16 px', color: 'white', enabled: true
+        });
     }
 
     update() {

@@ -1,5 +1,9 @@
 class Scene {
-    constructor(id, object, startingScene, UI) {
+    constructor(obj) {
+        this.setupConstructor(obj.id, obj.object, obj.startingScene, obj.UI);
+    }
+
+    setupConstructor(id, object, startingScene, UI) {
         this.id = id;
         this.startingScene = startingScene;
         this.UI = UI;

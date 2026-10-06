@@ -6,7 +6,11 @@ class Anim {
     // spriteId
     // currentImage
 
-    constructor(name, spriteSrcs, speed) {
+    constructor(obj) {
+        this.setupConstructor(obj.name, obj.sprites, obj.speed);
+    }
+
+    setupConstructor(name, spriteSrcs, speed) {
         this.name = name;
         this.spriteImgs = [];
         spriteSrcs.forEach(src => {
