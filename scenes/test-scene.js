@@ -2,6 +2,8 @@ class TestScene {
     constructor () {}
 
     setup() {
+        SaveManager.get('hero');
+        SaveManager.set('hero', 'coucou');
         var hero = new Hero();
         new Sprite({
             id: 'hero',
