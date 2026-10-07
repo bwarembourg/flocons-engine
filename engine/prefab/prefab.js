@@ -37,6 +37,11 @@ class Prefab {
         });
     }
 
+    getItem(id, scene) {
+        const obj = this.objectsInScene.find(oId => oId.scene === scene);
+        return obj.sprites.find(s => s.id === id) || obj.texts.find(t => t.id === id);
+    }
+
     update() {
         if (this.object?.update)
             this.object.update();
