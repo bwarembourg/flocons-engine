@@ -20,6 +20,19 @@ const testPrefab = new Prefab({
     object: new TestPrefab()
 });
 
+// Define Level Maps here
+const lm1 = new LevelMap({
+    legend: {
+        'C': testPrefab
+    },
+    tileWidth: 250,
+    tileHeight: 250,
+    x: 0,
+    y: 0,
+    layer: 1,
+    level: level1
+});
+
 // Define Scenes here
 const uiScene = new Scene({
     id: 'ui',
