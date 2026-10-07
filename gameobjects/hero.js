@@ -22,6 +22,11 @@ class Hero {
     }
 
     onmousedown(pos) {
+        if (MUSIC.isPlaying()) {
+            MUSIC.pause();
+        } else {
+            MUSIC.play('sounds/test.mp3');
+        }
         const prefab = findPrefabById('pr2');
         if (prefab) {
             prefab.destroy(prefab.idInScene);
@@ -30,6 +35,9 @@ class Hero {
     }
 
     changeScene() {
+        if (!MUSIC.isPlaying()) {
+            MUSIC.resume();
+        }
         changeScene('test2')
     }
 }
