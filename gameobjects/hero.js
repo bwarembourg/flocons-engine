@@ -22,11 +22,12 @@ class Hero {
     }
 
     onmousedown(pos) {
-        if (MUSIC.isPlaying()) {
-            MUSIC.pause();
-        } else {
-            MUSIC.play('sounds/test.mp3');
-        }
+        // if (MUSIC.isPlaying()) {
+        //     MUSIC.pause();
+        // } else {
+        //     MUSIC.play('sounds/test.mp3');
+        // }
+        SFX.play('buy');
         const prefab = findPrefabById('pr2');
         if (prefab) {
             prefab.destroy(prefab.idInScene);
@@ -35,9 +36,10 @@ class Hero {
     }
 
     changeScene() {
-        if (!MUSIC.isPlaying()) {
-            MUSIC.resume();
-        }
+        // if (!MUSIC.isPlaying()) {
+        //     MUSIC.resume();
+        // }
+        SFX.play('error')
         changeScene('test2')
     }
 }

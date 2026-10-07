@@ -8,6 +8,11 @@ const die = new Anim({
     sprites: ['sprite/cinnamon die1.png', 'sprite/cinnamon die2.png', 'sprite/cinnamon die3.png', 'sprite/cinnamon die4.png', 'sprite/cinnamon die5.png', 'sprite/cinnamon die6.png', 'sprite/cinnamon die7.png', 'sprite/cinnamon die8.png', 'sprite/cinnamon die9.png', 'sprite/cinnamon die10.png']
 })
 
+// Define sfxs here
+SFX.setSfxs([
+    {id: 'error', src: 'sounds/error.wav'},
+    {id: 'buy', src: 'sounds/buy.wav'},
+]);
 
 // Define prefabs here
 const testPrefab = new Prefab({
