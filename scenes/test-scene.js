@@ -33,9 +33,17 @@ class TestScene {
         });
 
         testPrefab.addToScene({
+            id: 'pr1',
             scene: this.scene,
             x: 300,
             y: 300,
+            layer: 20
+        });
+        testPrefab.addToScene({
+            id: 'pr2',
+            scene: this.scene,
+            x: 300,
+            y: 0,
             layer: 20
         });
     }

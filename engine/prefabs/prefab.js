@@ -4,6 +4,8 @@ class Prefab {
         this.object = obj.object;
         this.sprites = [];
         this.texts = [];
+        this.objectsInScene = [];
+        prefabs.push(this);
     }
 
     addToScene(obj) {
@@ -11,7 +13,14 @@ class Prefab {
             this.sprites = this.object.setupSprites();
         if (this.object.setupTexts)
             this.texts = this.object.setupTexts();
-
+        
+        this.objectsInScene.push({
+            id: obj.id,
+            scene: obj.scene,
+            sprites: this.sprites,
+            texts: this.texts
+        });
+        
         this.sprites.forEach(sprite => {
             sprite.x = obj.x + sprite.initialX;
             sprite.y = obj.y + sprite.initialY;
@@ -28,9 +37,15 @@ class Prefab {
         });
     }
 
-    destroy() {
-        this.sprites.forEach(s => s.destroy);
-        this.texts.forEach(t => t.destroy());
+    update() {
+        if (this.object?.update)
+            this.object.update();
+    }
+
+    destroy(id) {
+        const obj = this.objectsInScene.find(oId => oId.id === id);
+        obj.sprites.forEach(s => s.destroy());
+        obj.texts.forEach(t => t.destroy());
     }
 
 }

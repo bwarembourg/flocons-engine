@@ -22,6 +22,10 @@ class Hero {
     }
 
     onmousedown(pos) {
+        const prefab = findPrefabById('pr2');
+        if (prefab) {
+            prefab.destroy(prefab.idInScene);
+        }
         this.sprite.moveToXY(400, 400, 60, Motions.EASE_IN_OUT_BACK, this.changeScene);
     }
 

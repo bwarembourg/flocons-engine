@@ -20,8 +20,24 @@ function getDistance(pos1, pos2) {
     return x + y;
 }
 
-function findById(id) {
+function findSpriteById(id) {
     return currentScene?.sprites.find(s => s.id == id);
+}
+
+function findTextById(id) {
+    return currentScene?.texts.find(t => t.id == id);
+}
+
+function findPrefabById(id) {
+    const prefab = prefabs.find(p => p.objectsInScene.find(o => o.id == id));
+    if (prefab) {
+        prefab.idInScene = id;
+    }
+    return prefab;
+}
+
+function findById(id) {
+    return findSpriteById(id) || findTextById(id) || findPrefabById(id);
 }
 
 function findByLayer(layer) {

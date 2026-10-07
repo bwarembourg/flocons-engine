@@ -4,6 +4,8 @@ spriteLoaded = 0;
 scenes = new Array();
 currentScene = null;
 
+prefabs = new Array();
+
 function onLoadImg() {
     spriteLoaded++;
     if (spriteImgs.length == spriteLoaded) {
@@ -43,7 +45,11 @@ function draw() {
                     renderText(text);
                 }
             }
+            const scenePrefabs = prefabs.filter(p => p.objectsInScene.scene === this.scene);
+            scenePrefabs.forEach(sp => sp.update());
         }
+
+        // UI
         if (currentScene.UI) {
             currentScene.UI.update();
             for(var i = 0; i <= 1000; i++) {
