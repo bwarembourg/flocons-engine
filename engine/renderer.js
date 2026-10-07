@@ -5,6 +5,7 @@ scenes = new Array();
 currentScene = null;
 
 prefabs = new Array();
+pause = false;
 
 function onLoadImg() {
     spriteLoaded++;
@@ -70,8 +71,12 @@ function draw() {
             }
         }
     }
-
+    if (pause) return;
     setTimeout(draw, 1000/60); // 60fps
+}
+
+function pauseUnpause() {
+    pause = !pause;
 }
 
 function changeScene(id) {
